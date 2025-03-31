@@ -8,7 +8,8 @@ import org.json.JSONException
 
 class OpenLibraryApi(private val context: Context) {
     fun searchBooks(query: String, onSuccess: (List<BookDoc>) -> Unit, onError: (Exception) -> Unit) {
-        val url = "https://openlibrary.org/search.json?q=${query.replace(" ", "+")}"
+        val limit = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE).getInt("searchLimit", 25)
+        val url = "https://openlibrary.org/search.json?q=${query.replace(" ", "+")}&limit=$limit"
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
