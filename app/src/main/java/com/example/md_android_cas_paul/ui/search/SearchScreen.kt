@@ -9,11 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.md_android_cas_paul.data.model.Book
-import com.example.md_android_cas_paul.viewmodel.BookViewModel
+import com.example.md_android_cas_paul.viewmodel.SearchBookViewModel
 
 @Composable
-fun SearchScreen(viewModel: BookViewModel, onBookSelected: (Book) -> Unit) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+fun SearchScreen(viewModel: SearchBookViewModel, onBookSelected: (Book) -> Unit) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp).statusBarsPadding()) {
         TextField(
             value = viewModel.searchQuery.value,
             onValueChange = { viewModel.onSearchQueryChanged(it) },
@@ -25,11 +25,11 @@ fun SearchScreen(viewModel: BookViewModel, onBookSelected: (Book) -> Unit) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp))
             }
             viewModel.error.value != null -> {
-                Text(
-                    text = viewModel.error.value ?: "Unknown error",
-                    color = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
+//                Text(
+//                    text = viewModel.error.value ?: "Unknown error",
+//                    color = MaterialTheme.colorScheme.error,
+//                    modifier = Modifier.padding(top = 16.dp)
+//                )
             }
             else -> {
                 LazyColumn(modifier = Modifier.padding(top = 16.dp)) {

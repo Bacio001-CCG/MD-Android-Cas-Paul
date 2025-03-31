@@ -21,7 +21,7 @@ class OpenLibraryApi(private val context: Context) {
                     val authors = doc.optJSONArray("author_name")?.let { array ->
                         (0 until array.length()).map { array.getString(it) }
                     }
-                    books.add(BookDoc(doc.getString("title"), authors))
+                    books.add(BookDoc(doc.getString("key"), doc.getString("title"), authors))
                 }
                 continuation.resume(books)
             },
@@ -33,4 +33,4 @@ class OpenLibraryApi(private val context: Context) {
     }
 }
 
-data class BookDoc(val title: String, val author_name: List<String>?)
+data class BookDoc(val key: String, val title: String, val author_name: List<String>?)

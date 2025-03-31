@@ -8,7 +8,7 @@ import com.example.md_android_cas_paul.data.model.Book
 import com.example.md_android_cas_paul.data.repository.BookRepository
 import kotlinx.coroutines.launch
 
-class BookViewModel(private val repository: BookRepository) : ViewModel() {
+class SearchBookViewModel(private val repository: BookRepository) : ViewModel() {
     private val _searchQuery = mutableStateOf("")
     val searchQuery: State<String> = _searchQuery
 
