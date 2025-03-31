@@ -10,10 +10,9 @@ class SearchBookViewModel(private val repository: BookRepository) : ViewModel() 
     val isLoading = mutableStateOf(false)
     val error = mutableStateOf<String?>(null)
 
-    fun onSearchQueryChanged(query: String) {
-        searchQuery.value = query
-        if (query.isNotEmpty()) {
-            searchBooks(query)
+    fun performSearch() {
+        if (searchQuery.value.isNotEmpty()) {
+            searchBooks(searchQuery.value)
         }
     }
 
