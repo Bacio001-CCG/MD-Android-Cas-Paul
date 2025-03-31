@@ -10,7 +10,7 @@ class BookRepository(context: Context) {
     suspend fun searchBooks(query: String): List<Book> {
         val response = api.searchBooks(query)
         return response.map { doc ->
-            Book(title = doc.title, author = doc.author_name?.firstOrNull() ?: "Unknown")
+            Book(workKey = doc.key, title = doc.title, author = doc.author_name?.firstOrNull() ?: "Unknown")
         }
     }
 }
