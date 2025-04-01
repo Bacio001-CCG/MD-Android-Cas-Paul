@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.md_android_cas_paul.ui.favorite.FavoritesScreen
+import com.example.md_android_cas_paul.ui.photo.PhotoScreen
 import com.example.md_android_cas_paul.ui.settings.SettingsScreen
 import com.example.md_android_cas_paul.viewmodel.FavoritesViewModel
 
@@ -30,8 +31,9 @@ fun AppNavigation() {
             HomeScreen(
                 onNavigateToSearch = { navController.navigate("search") },
                 onNavigateToFavorites = { navController.navigate("favorites") },
-                onNavigateToSettings = { navController.navigate("settings") }
-                )
+                onNavigateToSettings = { navController.navigate("settings") },
+                onNavigateToPhoto = {navController.navigate("photo")}
+            )
         }
 
         composable("search") {
@@ -57,6 +59,9 @@ fun AppNavigation() {
         }
         composable("settings") {
             SettingsScreen(onSave = { navController.popBackStack() })
+        }
+        composable("photo") {
+            PhotoScreen()
         }
     }
 }

@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(onNavigateToSearch: () -> Unit, onNavigateToFavorites: () -> Unit, onNavigateToSettings: () -> Unit) {
+fun HomeScreen(onNavigateToSearch: () -> Unit, onNavigateToFavorites: () -> Unit, onNavigateToSettings: () -> Unit, onNavigateToPhoto: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -30,7 +30,6 @@ fun HomeScreen(onNavigateToSearch: () -> Unit, onNavigateToFavorites: () -> Unit
             onClick = onNavigateToFavorites,
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .padding(bottom = 8.dp)
         ) {
             Text("Favorites")
         }
@@ -38,9 +37,15 @@ fun HomeScreen(onNavigateToSearch: () -> Unit, onNavigateToFavorites: () -> Unit
             onClick = onNavigateToSettings,
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .padding(bottom = 8.dp)
         ) {
             Text("Settings")
+        }
+        Button(
+            onClick = onNavigateToPhoto,
+            modifier = Modifier
+                .fillMaxWidth(0.7f)
+        ) {
+            Text("Photos")
         }
     }
 }
