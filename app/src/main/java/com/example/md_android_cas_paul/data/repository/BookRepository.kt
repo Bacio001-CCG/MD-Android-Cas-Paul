@@ -9,13 +9,20 @@ class BookRepository(context: Context) {
     private val api = OpenLibraryApi(context)
     private val favoritesDbHelper = FavoritesDbHelper(context)
 
-    suspend fun searchBooks(query: String): List<Book> {
-        val response = api.searchBooks(query)
-        return response.map { doc ->
-            Book(workKey = doc.key, title = doc.title, author = doc.author_name?.firstOrNull() ?: "Unknown")
-        }
+    fun searchBooks(query: String, onSuccess: (List<Book>) -> Unit, onError: (Exception) -> Unit) {
+        api.searchBooks(
+            query,
+            onSuccess = { bookDocs ->
+                val books = bookDocs.map { doc ->
+                    Book(workKey = doc.key, title = doc.title, author = doc.author_name?.firstOrNull() ?: "Unknown")
+                }
+                onSuccess(books)
+            },
+            onError = { error ->
+                onError(error)
+            }
+        )
     }
-
     fun addFavorite(workKey: String, title: String, author: String?) {
         favoritesDbHelper.addFavorite(workKey, title, author)
     }
